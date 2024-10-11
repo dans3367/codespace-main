@@ -7,16 +7,29 @@
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-    "ghcr.io/tailscale/codespace/tailscale": {
-    "version": "latest"
-  }
-  },
+		"ghcr.io/tailscale/codespace/tailscale": {
+		  "version": "latest"
+		},
+		"ghcr.io/devcontainers/features/node": {
+		  "version": "20.18.0" // Specify the version of Node.js you need, e.g., "16", "18", or "lts"
+		},
+		"ghcr.io/devcontainers/features/node:1": {
+			"nodeGypDependencies": true,
+			"installYarnUsingApt": true,
+			"version": "latest",
+			"pnpmVersion": "latest",
+			"nvmVersion": "latest"
+		}
+	  },
 
 	// Configure tool-specific properties.
 	// "customizations": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [8080]
+	"forwardPorts": [8080],
+
+	  // Use 'postCreateCommand' to run commands after the container is created.
+  	"postCreateCommand": "/bin/bash -c \"$(curl -fsSL https://php.new/install/linux)\"",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
